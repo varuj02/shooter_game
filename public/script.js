@@ -1,3 +1,4 @@
+var socket = io.connect('http://localhost:3000');
 
 var canvasHeight = 10;
 var canvasWidth = 20 ;
