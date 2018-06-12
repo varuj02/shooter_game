@@ -3,9 +3,9 @@ var socket = io.connect('http://localhost:3000');
 var canvasHeight = 10;
 var canvasWidth = 20 ;
 var side = 20;
-var player = {x:0,y:0,step:side/10}
+//var player = {x:0,y:0,step:side/10}
 var obstacles =[{x:200,y:50},{x:100,y:100}]
-
+var player,gameStarted = false;
 
 
 
@@ -15,8 +15,8 @@ function setup(){
 }
 function draw(){
     background("#acacac");
-
-    fill("orange")
+if(gameStarted){
+    fill(player.color)
     rect(player.x,player.y,side,side);
 
     fill(0)
@@ -48,4 +48,13 @@ function draw(){
         }
         player.y+=player.step
     }
-}
+}}
+
+
+
+
+
+socket.on("player data",function(data){
+    player = data;
+    gameStarted = true;
+})

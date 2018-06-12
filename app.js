@@ -34,3 +34,24 @@ app.get('/', function (req, res) {
 server.listen(port, function () {
     console.log("Server is listening on port " + port);
 });
+
+
+var side = 32;
+var width = 25, height = 15;
+
+
+var Players = [
+  { x: 2 * side, y: 0,color:"red" },
+  { x: 2 * side, y: (height - 1) * side,color:"blue"},
+  { x: (width - 3) * side, y: 0, color: "green" },
+  { x: (width - 3) * side, y: (height - 1) * side, color: "yellow" }
+];
+var playerCounter = 0;
+
+
+io.on('connection', function (socket) {
+console.log('player connected')
+socket.emit("player data",Players[playerCounter++])
+
+
+})
